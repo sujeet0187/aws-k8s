@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libapache2-mod-php \
     php-cli \
     php-common \
+    php-mysql \
     && rm -rf /var/list/apt/lists/*
 
 WORKDIR /var/www/html
