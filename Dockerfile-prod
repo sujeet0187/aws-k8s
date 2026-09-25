@@ -12,5 +12,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www/html
 COPY app .
+RUN rm index.html
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
