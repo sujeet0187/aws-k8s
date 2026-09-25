@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-prod
+  namespace: k8s-prod
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: k8s-prod
+  template:
+    metadata:
+      labels:
+        app: k8s-prod
+    spec:
+      containers:
+        - name: k8s-prod
+          image: CHANGE-IMAGE-NAME
+          imagePullPolicy:
+          ports:
+            - containerPort: 80
