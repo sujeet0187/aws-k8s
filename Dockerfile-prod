@@ -1,6 +1,14 @@
 FROM ubuntu/apache2
 ARG ARG_ENV
 ENV APP_ENV=$ARG_ENV
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    php \
+    libapache2-mod-php \
+    php-cli \
+    php-common \
+    && rm -rf /var/list/apt/lists/*
+
 WORKDIR /var/www/html
 COPY index.html .
 EXPOSE 80
