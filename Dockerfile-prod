@@ -13,5 +13,6 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www/html
 COPY app .
 RUN rm index.html
+RUN config/wp-config.php .
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
