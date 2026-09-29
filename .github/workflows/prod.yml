@@ -24,18 +24,6 @@ jobs:
         role-to-assume: arn:aws:iam::204998944520:role/GitHubActionRole  # change AWS account HERE
         aws-region: us-east-1
 
-    - name: Retrieve Secrets DB cred
-      uses: aws-actions/aws-secretsmanager-get-secrets@v2
-      with:
-        secret-ids: |
-          k8s_secret
-        parse-json-secrets: true
-    - name: changing env variable 
-      run: |        
-        sed -i "s|DB_NAME_PROD|$K8S_SECRET_DB_NAME_PROD|g" config/wp-config.php
-        sed -i "s|DB_USER_PROD|$K8S_SECRET_DB_USER_PROD|g" config/wp-config.php
-        sed -i "s|DB_PASSWORD_PROD|$K8S_SECRET_DB_PASSWORD_PROD|g" config/wp-config.php
-        sed -i "s|DB_HOST_PROD|$K8S_SECRET_DB_HOST_PROD|g" config/wp-config.php		
         
     - name: Login to Amazon ECR
       id: login-ecr
